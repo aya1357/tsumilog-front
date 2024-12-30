@@ -27,7 +27,7 @@ const SignIn = () => {
       <ScrollView contentContainerClassName="h-full">
         <Image source={images.signIn} className="w-full h-4/6" resizeMode="contain" />
         <View className="px-10">
-          <Text className="text-3xl font-rubik-bold text-black-300 text-center mt-2">
+          <Text className="text-3xl font-rubik-bold text-black text-center mt-2">
             積みログ
           </Text>
           <TouchableOpacity
@@ -40,7 +40,7 @@ const SignIn = () => {
                 className="w-5 h-5"
                 resizeMode="contain"
               />
-              <Text className="text-lg font-rubik-medium text-black-300 ml-2">
+              <Text className="text-lg font-rubik-medium text-black ml-2">
                 Googleアカウントでログイン
               </Text>
             </View>
