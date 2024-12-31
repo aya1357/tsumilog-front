@@ -7,3 +7,6 @@ ios
 metro.config.js
 babel.config.js
 tailwind.config.js
+.lintstagedrc
+.prettierrc
+.husky/pre-commit
