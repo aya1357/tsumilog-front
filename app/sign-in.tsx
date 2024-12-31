@@ -1,46 +1,41 @@
-import { View, Text, ScrollView, Image, TouchableOpacity, Alert } from "react-native";
-import React from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
-import images from "@/constants/images";
-import icons from "@/constants/icons";
-import { login } from "@/lib/appwrite";
-import { useGlobalContext } from "@/lib/global-provider";
-import { Redirect } from "expo-router";
+import React from 'react'
+import { Alert, Image, ScrollView, Text, TouchableOpacity, View } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import { Redirect } from 'expo-router'
+
+import icons from '@/constants/icons'
+import images from '@/constants/images'
+import { login } from '@/lib/appwrite'
+import { useGlobalContext } from '@/lib/global-provider'
 
 const SignIn = () => {
-  const { refetch, loading, isLoggedIn } = useGlobalContext();
+  const { refetch, loading, isLoggedIn } = useGlobalContext()
 
-  if (!loading && isLoggedIn)  return <Redirect href="/" />
+  if (!loading && isLoggedIn) return <Redirect href="/" />
 
   const handleLogin = async () => {
-    const result = await login();
+    const result = await login()
 
     if (result) {
-      refetch();
+      void refetch({})
     } else {
-      Alert.alert('Error', 'Failed to login');
+      Alert.alert('Error', 'Failed to login')
     }
-  };
+  }
 
   return (
-    <SafeAreaView className="bg-white h-full">
+    <SafeAreaView className="h-full bg-white">
       <ScrollView contentContainerClassName="h-full">
-        <Image source={images.signIn} className="w-full h-4/6" resizeMode="contain" />
+        <Image source={images.signIn} className="h-4/6 w-full" resizeMode="contain" />
         <View className="px-10">
-          <Text className="text-3xl font-rubik-bold text-black text-center mt-2">
-            積みログ
-          </Text>
+          <Text className="mt-2 text-center font-rubik-bold text-3xl text-black">積みログ</Text>
           <TouchableOpacity
             onPress={handleLogin}
-            className="bg-white shadow-md shadow-zinc-300 rounded-full w-full py-4 mt-5"
+            className="mt-5 w-full rounded-full bg-white py-4 shadow-md shadow-zinc-300"
           >
             <View className="flex flex-row items-center justify-center">
-              <Image
-                source={icons.google}
-                className="w-5 h-5"
-                resizeMode="contain"
-              />
-              <Text className="text-lg font-rubik-medium text-black ml-2">
+              <Image source={icons.google} className="h-5 w-5" resizeMode="contain" />
+              <Text className="ml-2 font-rubik-medium text-lg text-black">
                 Googleアカウントでログイン
               </Text>
             </View>
@@ -48,7 +43,7 @@ const SignIn = () => {
         </View>
       </ScrollView>
     </SafeAreaView>
-  );
-};
+  )
+}
 
-export default SignIn;
+export default SignIn

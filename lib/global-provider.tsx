@@ -1,47 +1,49 @@
-import { createContext, ReactNode, useContext } from "react";
-import { useAppwrite } from "@/lib/useAppwrite";
-import { getCurrentUser } from "@/lib/appwrite";
+import { createContext, useContext, type ReactNode } from 'react'
+
+import { getCurrentUser } from '@/lib/appwrite'
+import { useAppwrite } from '@/lib/useAppwrite'
+
 interface User {
-  $id: string;
-  name: string;
-  email: string;
-  avatar: string;
+  $id: string
+  name: string
+  email: string
+  avatar: string
 }
 
 interface GlobalContextType {
-  isLoggedIn: boolean;
-  user: User | null;
-  loading: boolean;
-  refetch: (newParams?: Record<string, string | number>) => Promise<void>;
+  isLoggedIn: boolean
+  user: User | null
+  loading: boolean
+  refetch: (newParams: Record<string, string | number> | undefined) => Promise<void>
 }
 
-const GlobalContext = createContext<GlobalContextType | undefined>(undefined);
+const GlobalContext = createContext<GlobalContextType | undefined>(undefined)
 
 export const GlobalProvider = ({ children }: { children: ReactNode }) => {
   const {
     data: user,
     loading,
-    refetch,
+    refetch
   } = useAppwrite({
-    fn: getCurrentUser,
-  });
+    fn: getCurrentUser
+  })
 
-  const isLoggedIn = !!user;
+  const isLoggedIn = !!user
 
   return (
     <GlobalContext.Provider value={{ isLoggedIn, user, loading, refetch }}>
       {children}
     </GlobalContext.Provider>
-  );
-};
+  )
+}
 
 export const useGlobalContext = (): GlobalContextType => {
-  const context = useContext(GlobalContext);
+  const context = useContext(GlobalContext)
   if (!context) {
-    throw new Error("useGlobalContext must be used within a GlobalProvider");
+    throw new Error('useGlobalContext must be used within a GlobalProvider')
   }
 
-  return context;
-};
+  return context
+}
 
-export default GlobalProvider;
+export default GlobalProvider

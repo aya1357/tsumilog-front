@@ -1,0 +1,9 @@
+__tests__
+node_modules
+coverage
+android
+ios
+.eslintrc.cjs
+metro.config.js
+babel.config.js
+tailwind.config.js
