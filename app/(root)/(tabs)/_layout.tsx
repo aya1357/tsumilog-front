@@ -1,5 +1,5 @@
 import { Text, View } from 'react-native'
-import Icons from 'react-native-vector-icons/MaterialIcons'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { Tabs } from 'expo-router'
 
 type TabTextStylesProps = {
@@ -14,7 +14,7 @@ const tabTextStyles: TabTextStylesProps = {
   base: 'text-xs w-full text-center mt-1',
   state: {
     focused: 'text-primary-300 font-rubik-medium',
-    unfocused: 'text-black-200 font-rubik'
+    unfocused: 'text-gray-200 font-rubik'
   }
 }
 
@@ -27,7 +27,7 @@ type TabIconProps = {
 function TabIcon({ focused, iconName, title }: TabIconProps) {
   return (
     <View className="mt-1 flex flex-1 flex-col items-center">
-      <Icons name={iconName} size={24} color={focused ? '#0061FF' : '#666876'} />
+      <MaterialIcons name={iconName} size={24} color={focused ? '#0061FF' : '#666876'} />
       <Text
         className={`${tabTextStyles.base} ${
           focused ? tabTextStyles.state.focused : tabTextStyles.state.unfocused
@@ -45,7 +45,7 @@ export default function TabsLayout() {
       screenOptions={{
         tabBarShowLabel: false,
         tabBarStyle: {
-          backgroundColor: 'white',
+          backgroundColor: '#FBFBFD',
           position: 'absolute',
           borderTopColor: '#0061FF1A',
           borderTopWidth: 1,
