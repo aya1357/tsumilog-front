@@ -24,18 +24,20 @@ const SignIn = () => {
   }
 
   return (
-    <SafeAreaView className="h-full bg-white">
+    <SafeAreaView className="h-full bg-base-white">
       <ScrollView contentContainerClassName="h-full">
         <Image source={images.signIn} className="h-4/6 w-full" resizeMode="contain" />
         <View className="px-10">
-          <Text className="mt-2 text-center font-rubik-bold text-3xl text-black">積みログ</Text>
+          <Text className="mt-2 text-center font-rubik-bold text-3xl text-base-black">
+            積みログ
+          </Text>
           <TouchableOpacity
             onPress={handleLogin}
-            className="mt-5 w-full rounded-full bg-white py-4 shadow-md shadow-zinc-300"
+            className="mt-5 w-full rounded-full bg-base-white py-4 shadow-md shadow-zinc-300"
           >
             <View className="flex flex-row items-center justify-center">
               <Image source={icons.google} className="h-5 w-5" resizeMode="contain" />
-              <Text className="ml-2 font-rubik-medium text-lg text-black">
+              <Text className="ml-2 font-rubik-medium text-lg text-base-black">
                 Googleアカウントでログイン
               </Text>
             </View>

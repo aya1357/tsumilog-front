@@ -13,19 +13,21 @@ module.exports = {
         'rubik-light': ['Rubik-Light', 'sans-serif']
       },
       colors: {
+        base: {
+          white: '#FBFBFD',
+          black: '#191D31',
+        },
         primary: {
           100: '#0061FF0A',
           200: '#0061FF1A',
           300: '#0061FF'
         },
-        white: '#FBFBFD',
-        black: '#191D31',
         gray: {
           100: '#8C8E98',
           200: '#666876'
         },
         danger: '#F75555'
-      }
+      },
     }
   },
   plugins: []
