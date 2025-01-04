@@ -7,7 +7,8 @@ import { useGlobalContext } from '@/lib/global-provider'
 
 const routeTitles: Record<string, string> = {
   '/': 'ホーム',
-  '/settings': '設定'
+  '/settings': '設定',
+  '/calendar': '読書'
 }
 
 export default function AppLayout() {

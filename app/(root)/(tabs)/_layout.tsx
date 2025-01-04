@@ -1,43 +1,7 @@
-import { Text, View } from 'react-native'
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import { Tabs } from 'expo-router'
 
-type TabTextStylesProps = {
-  base: string
-  state: {
-    focused: string
-    unfocused: string
-  }
-}
-
-const tabTextStyles: TabTextStylesProps = {
-  base: 'text-xs w-full text-center mt-1',
-  state: {
-    focused: 'text-primary-300 font-rubik-medium',
-    unfocused: 'text-neutral-200 font-rubik'
-  }
-}
-
-type TabIconProps = {
-  focused: boolean
-  iconName: string
-  title: string
-}
-
-function TabIcon({ focused, iconName, title }: TabIconProps) {
-  return (
-    <View className="mt-1 flex flex-1 flex-col items-center">
-      <MaterialIcons name={iconName} size={24} color={focused ? '#0061FF' : '#666876'} />
-      <Text
-        className={`${tabTextStyles.base} ${
-          focused ? tabTextStyles.state.focused : tabTextStyles.state.unfocused
-        }`}
-      >
-        {title}
-      </Text>
-    </View>
-  )
-}
+import { TabIcon } from '@/components/general/TabIcon'
+import { IconMap } from '@/constants/iconMap'
 
 export default function TabsLayout() {
   return (
@@ -58,7 +22,29 @@ export default function TabsLayout() {
         options={{
           title: 'Home',
           headerShown: false,
-          tabBarIcon: ({ focused }) => <TabIcon focused={focused} iconName="home" title="Home" />
+          tabBarIcon: ({ focused }) => (
+            <TabIcon
+              focused={focused}
+              IconComponent={IconMap.Ionicons}
+              iconName="home"
+              title="Home"
+            />
+          )
+        }}
+      />
+      <Tabs.Screen
+        name="calendar"
+        options={{
+          title: 'Calendar',
+          headerShown: false,
+          tabBarIcon: ({ focused }) => (
+            <TabIcon
+              focused={focused}
+              IconComponent={IconMap.Ionicons}
+              iconName="calendar"
+              title="読書"
+            />
+          )
         }}
       />
       <Tabs.Screen
@@ -67,7 +53,12 @@ export default function TabsLayout() {
           title: 'Settings',
           headerShown: false,
           tabBarIcon: ({ focused }) => (
-            <TabIcon focused={focused} iconName="settings" title="設定" />
+            <TabIcon
+              focused={focused}
+              IconComponent={IconMap.Ionicons}
+              iconName="settings-sharp"
+              title="設定"
+            />
           )
         }}
       />
