@@ -14,7 +14,7 @@ const tabTextStyles: TabTextStylesProps = {
   base: 'text-xs w-full text-center mt-1',
   state: {
     focused: 'text-primary-300 font-rubik-medium',
-    unfocused: 'text-gray-200 font-rubik'
+    unfocused: 'text-neutral-200 font-rubik'
   }
 }
 
