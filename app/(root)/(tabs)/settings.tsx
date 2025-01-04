@@ -72,7 +72,7 @@ export default function Settings() {
   }
 
   return (
-    <SafeAreaView className="h-full bg-white">
+    <SafeAreaView className="h-full">
       <ScrollView showsVerticalScrollIndicator={false} contentContainerClassName="pb-32 px-7">
         <View className="mt-5 flex flex-row justify-center">
           <View className="relative mt-5 flex flex-col items-center">
