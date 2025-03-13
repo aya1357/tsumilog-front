@@ -1,10 +1,11 @@
 import { View } from 'react-native'
-import { Text } from 'react-native-paper'
+
+import { Calendar } from '@/components/calendar'
 
 export default function Index() {
   return (
-    <View className="mx-4 mt-2 justify-center">
-      <Text>Test</Text>
+    <View style={{ flex: 1 }}>
+      <Calendar />
     </View>
   )
 }
