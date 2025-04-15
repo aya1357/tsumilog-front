@@ -10,8 +10,8 @@ export type CalendarItem = {
   color: string
   /** 表示文字 */
   text: string
-  /** 表示タイプ (start:予定開始日 / between:予定中間日 / end:予定終了日 / all:全日) */
-  type: 'start' | 'between' | 'end' | 'all'
+  /** テキストを表示するかどうか */
+  showText: boolean
 }
 
 export type Schedule = {
@@ -113,10 +113,11 @@ export const useCalendarEvents = () => {
 
   const eventItems = useMemo(() => {
     const result = new Map<string, CalendarItem[]>()
-    events.map((event) => {
+    events.forEach((event) => {
       const dayKey = dateFormat(event.date)
       const currentData = result.get(dayKey)
-      const maxIndex = currentData?.reduce((p, c) => Math.max(p, c.index), 0)
+      // 既存のイベントがある場合、最大のインデックス値を取得
+      const maxIndex = currentData?.reduce((max, event) => Math.max(max, event.index), 0)
       result.set(dayKey, [
         ...(currentData ?? []),
         {
@@ -124,7 +125,7 @@ export const useCalendarEvents = () => {
           index: maxIndex !== undefined ? maxIndex + 1 : 0,
           color: event.color,
           text: event.text,
-          type: 'all'
+          showText: true
         }
       ])
     })

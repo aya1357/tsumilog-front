@@ -1,114 +1,11 @@
 import { useEffect, useMemo, useState } from 'react'
 import { ActivityIndicator, StyleSheet, useColorScheme, View } from 'react-native'
-import { CalendarList, LocaleConfig } from 'react-native-calendars'
+import { CalendarList } from 'react-native-calendars'
 import type { Theme as CalendarTheme } from 'react-native-calendars/src/types'
 
 import { CalendarDayItem } from './CalendarDayItem'
+import { CalendarColors, DarkCalendarColors } from './constants/colors'
 import { useCalendarEvents } from './hooks'
-
-// カラーパレット定義
-export const CalendarColors = {
-  // メインカラー
-  primary: '#2563eb', // メインの青色
-  primaryLight: '#dbeafe', // 薄い青色
-  primaryDark: '#1e40af', // 濃い青色
-
-  // テキストカラー
-  textPrimary: '#1e293b', // 通常テキスト
-  textSecondary: '#64748b', // 薄いテキスト
-  textInverted: '#ffffff', // 白いテキスト
-
-  // 背景色
-  background: '#ffffff', // 背景色
-  backgroundAlt: '#f8fafc', // 代替背景色
-
-  // 境界線
-  border: '#e2e8f0', // 境界線色
-
-  // 特別な日
-  today: '#3b82f6', // 今日
-  sunday: '#ef4444', // 日曜日
-  saturday: '#3b82f6', // 土曜日
-
-  // イベント関連色
-  eventDefault: '#3b82f6' // デフォルトイベント色
-}
-
-// ダークモード用カラーパレット
-export const DarkCalendarColors = {
-  // メインカラー
-  primary: '#3b82f6',
-  primaryLight: '#1e3a8a',
-  primaryDark: '#60a5fa',
-
-  // テキストカラー
-  textPrimary: '#f1f5f9',
-  textSecondary: '#94a3b8',
-  textInverted: '#0f172a',
-
-  // 背景色
-  background: '#0f172a',
-  backgroundAlt: '#1e293b',
-
-  // 境界線
-  border: '#334155',
-
-  // 特別な日
-  today: '#60a5fa',
-  sunday: '#f87171',
-  saturday: '#60a5fa',
-
-  // イベント関連色
-  eventDefault: '#60a5fa'
-}
-
-interface LocaleConfigType {
-  locales: Record<
-    string,
-    {
-      monthNames: string[]
-      monthNamesShort: string[]
-      dayNames: string[]
-      dayNamesShort: string[]
-    }
-  >
-  defaultLocale: string
-}
-
-// カレンダーの表示言語設定
-;(LocaleConfig as LocaleConfigType).locales.jp = {
-  monthNames: [
-    '1月',
-    '2月',
-    '3月',
-    '4月',
-    '5月',
-    '6月',
-    '7月',
-    '8月',
-    '9月',
-    '10月',
-    '11月',
-    '12月'
-  ],
-  monthNamesShort: [
-    '1月',
-    '2月',
-    '3月',
-    '4月',
-    '5月',
-    '6月',
-    '7月',
-    '8月',
-    '9月',
-    '10月',
-    '11月',
-    '12月'
-  ],
-  dayNames: ['日曜日', '月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日'],
-  dayNamesShort: ['日', '月', '火', '水', '木', '金', '土']
-}
-;(LocaleConfig as LocaleConfigType).defaultLocale = 'jp'
 
 const PAST_RANGE = 24
 const FUTURE_RANGE = 24
@@ -210,9 +107,9 @@ export const Calendar = () => {
           showSixWeeks={false}
           hideExtraDays={false}
           monthFormat="yyyy年 M月"
-          dayComponent={(d) => (
+          dayComponent={(dayProps) => (
             <CalendarDayItem
-              {...d}
+              {...dayProps}
               eventItems={eventItems}
               cellMinHeight={cellMinHeight}
               colors={colors}
