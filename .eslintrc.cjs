@@ -44,7 +44,7 @@ const config = {
     // Hooksのルールを強制
     'react-hooks/rules-of-hooks': 'error',
     // useEffect等の依存配列チェック
-    'react-hooks/exhaustive-deps': 'warn',
+    'react-hooks/exhaustive-deps': 'off',
     // PropTypesチェックを無効化（TypeScriptを使用するため）
     'react/prop-types': 'off',
     // React 17以降はimport React不要

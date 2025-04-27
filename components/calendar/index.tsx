@@ -3,8 +3,8 @@ import { ActivityIndicator, StyleSheet, useColorScheme, View } from 'react-nativ
 import { CalendarList } from 'react-native-calendars'
 import type { Theme as CalendarTheme } from 'react-native-calendars/src/types'
 
+import { colors, darkColors } from '../theme/colors'
 import { CalendarDayItem } from './CalendarDayItem'
-import { CalendarColors, DarkCalendarColors } from './constants/colors'
 import { useCalendarEvents } from './hooks'
 
 const PAST_RANGE = 24
@@ -15,7 +15,7 @@ export const Calendar = () => {
   const { eventItems, isLoading: isEventsLoading } = useCalendarEvents()
   const colorScheme = useColorScheme()
   const isDark = colorScheme === 'dark'
-  const colors = isDark ? DarkCalendarColors : CalendarColors
+  const themeColors = isDark ? darkColors : colors
   const cellMinHeight = 80
 
   // カレンダーのローディング状態を管理
@@ -40,47 +40,47 @@ export const Calendar = () => {
   const calendarTheme: CalendarTheme = useMemo(
     () => ({
       // 全体設定
-      calendarBackground: colors.background,
-      backgroundColor: colors.background,
+      calendarBackground: themeColors.background.card,
+      backgroundColor: themeColors.background.card,
 
       // ヘッダー
-      monthTextColor: colors.textPrimary,
+      monthTextColor: themeColors.text.primary,
       textMonthFontWeight: 'bold',
       textMonthFontSize: 16,
 
       // ナビゲーション矢印
-      arrowColor: colors.primary,
+      arrowColor: themeColors.primary.default,
       arrowWidth: 24,
       arrowHeight: 24,
 
       // 週の曜日ヘッダー
-      textSectionTitleColor: colors.textSecondary,
+      textSectionTitleColor: themeColors.text.secondary,
       textDayHeaderFontWeight: '600',
       textDayHeaderFontSize: 12,
 
       // 日付
-      dayTextColor: colors.textPrimary,
+      dayTextColor: themeColors.text.primary,
       textDayFontSize: 14,
       textDayFontWeight: '400',
 
       // 今日
-      todayTextColor: colors.today,
+      todayTextColor: themeColors.primary.default,
       todayButtonFontWeight: 'bold',
 
       // 選択された日
-      selectedDayBackgroundColor: colors.primary,
-      selectedDayTextColor: colors.textInverted,
+      selectedDayBackgroundColor: themeColors.primary.default,
+      selectedDayTextColor: themeColors.text.light,
 
       // 無効な日
-      textDisabledColor: colors.textSecondary,
+      textDisabledColor: themeColors.text.secondary,
 
       // その他
-      dotColor: colors.primary,
-      selectedDotColor: colors.textInverted,
-      disabledDotColor: colors.textSecondary,
-      indicatorColor: colors.primary
+      dotColor: themeColors.primary.default,
+      selectedDotColor: themeColors.text.light,
+      disabledDotColor: themeColors.text.secondary,
+      indicatorColor: themeColors.primary.default
     }),
-    [colors]
+    [themeColors]
   )
 
   // カレンダーオンロード完了ハンドラー
@@ -89,11 +89,11 @@ export const Calendar = () => {
   }
 
   return (
-    <View style={[styles.container, { backgroundColor: colors.background }]}>
+    <View style={[styles.container, { backgroundColor: themeColors.background.card }]}>
       {/* ローディング中のインディケーター */}
       {isLoading && (
         <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color={colors.primary} />
+          <ActivityIndicator size="large" color={themeColors.primary.default} />
         </View>
       )}
 
@@ -112,7 +112,7 @@ export const Calendar = () => {
               {...dayProps}
               eventItems={eventItems}
               cellMinHeight={cellMinHeight}
-              colors={colors}
+              colors={themeColors}
             />
           )}
           markingType="custom"
@@ -155,6 +155,6 @@ const styles = StyleSheet.create({
     zIndex: 10
   },
   hiddenCalendar: {
-    opacity: 0 // opacity:0 で非表示にする（レンダリングは行われる）
+    opacity: 0
   }
 })

@@ -3,7 +3,7 @@ import { Platform } from 'react-native'
 import { Appbar } from 'react-native-paper'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
-interface HeaderProps {
+type HeaderProps = {
   title?: string
 }
 
@@ -19,5 +19,7 @@ const Header = ({ title = 'Title' }: HeaderProps) => (
     <Appbar.Action icon={MORE_ICON} style={{ marginLeft: -4 }} />
   </Appbar.Header>
 )
+
+Header.displayName = 'Header'
 
 export default Header
