@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Alert } from 'react-native'
 
-interface UseAppwriteOptions<T, P extends Record<string, string | number>> {
+type UseAppwriteOptions<T, P extends Record<string, string | number>> = {
   fn: (params: P) => Promise<T>
   params?: P
   skip?: boolean
 }
 
-interface UseAppwriteReturn<T, P> {
+type UseAppwriteReturn<T, P> = {
   data: T | null
   loading: boolean
   error: string | null

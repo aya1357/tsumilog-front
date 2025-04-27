@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ActivityIndicator, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Redirect, Slot, usePathname } from 'expo-router'
@@ -6,9 +7,10 @@ import Header from '@/components/general/Header'
 import { useGlobalContext } from '@/lib/global-provider'
 
 const routeTitles: Record<string, string> = {
-  '/': 'ホーム',
+  '/': '読書',
   '/settings': '設定',
-  '/calendar': '読書'
+  '/calendar': 'カレンダー',
+  '/reports': 'レポート'
 }
 
 export default function AppLayout() {
@@ -23,7 +25,8 @@ export default function AppLayout() {
     )
   }
 
-  if (!isLoggedIn) return <Redirect href="/sign-in" />
+  // ToDo: ログイン機能の修正
+  // if (!isLoggedIn) return <Redirect href="/sign-in" />
 
   return (
     <View className="flex h-full bg-base-white">

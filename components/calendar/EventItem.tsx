@@ -1,6 +1,8 @@
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
+import type { colors } from '../theme/colors'
+import { fonts, fontSizes, lineHeights } from '../theme/typography'
 import type { CalendarItem } from './CalendarDayItem'
 import { CALENDAR_CONSTANTS } from './constants/calendar'
 
@@ -8,9 +10,10 @@ type Props = {
   event: CalendarItem
   index: number
   onPress: (item: CalendarItem) => void
+  colors: typeof colors
 }
 
-export const EventItem = React.memo(({ event, index, onPress }: Props) => {
+export const EventItem = React.memo(({ event, index, onPress, colors }: Props) => {
   const { CELL } = CALENDAR_CONSTANTS
 
   return (
@@ -18,7 +21,7 @@ export const EventItem = React.memo(({ event, index, onPress }: Props) => {
       style={[
         styles.eventItem,
         {
-          backgroundColor: event.color || CALENDAR_CONSTANTS.COLORS.DEFAULT_EVENT,
+          backgroundColor: event.color || colors.primary.default,
           top: index * (CELL.HEIGHT + CELL.ITEM_PADDING)
         }
       ]}
@@ -54,8 +57,10 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   eventText: {
-    fontSize: 10,
-    color: '#FFFFFF',
-    textAlign: 'center'
+    fontFamily: fonts.regular,
+    fontSize: fontSizes.sm,
+    lineHeight: lineHeights.sm,
+    textAlign: 'center',
+    color: '#FFFFFF'
   }
 })

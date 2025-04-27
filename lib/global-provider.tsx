@@ -3,14 +3,14 @@ import { createContext, useContext, type ReactNode } from 'react'
 import { getCurrentUser } from '@/lib/appwrite'
 import { useAppwrite } from '@/lib/useAppwrite'
 
-interface User {
+type User = {
   $id: string
   name: string
   email: string
   avatar: string
 }
 
-interface GlobalContextType {
+type GlobalContextType = {
   isLoggedIn: boolean
   user: User | null
   loading: boolean

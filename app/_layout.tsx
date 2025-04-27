@@ -11,12 +11,15 @@ import GlobalProvider from '@/lib/global-provider'
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
-    'Rubik-Bold': require('../assets/fonts/Rubik-Bold.ttf') as number,
-    'Rubik-ExtraBold': require('../assets/fonts/Rubik-ExtraBold.ttf') as number,
-    'Rubik-Light': require('../assets/fonts/Rubik-Light.ttf') as number,
-    'Rubik-Medium': require('../assets/fonts/Rubik-Medium.ttf') as number,
-    'Rubik-Regular': require('../assets/fonts/Rubik-Regular.ttf') as number,
-    'Rubik-SemiBold': require('../assets/fonts/Rubik-SemiBold.ttf') as number
+    'NotoSansJP-Black': require('../assets/fonts/NotoSansJP-Black.ttf') as number,
+    'NotoSansJP-Bold': require('../assets/fonts/NotoSansJP-Bold.ttf') as number,
+    'NotoSansJP-ExtraBold': require('../assets/fonts/NotoSansJP-ExtraBold.ttf') as number,
+    'NotoSansJP-ExtraLight': require('../assets/fonts/NotoSansJP-ExtraLight.ttf') as number,
+    'NotoSansJP-Light': require('../assets/fonts/NotoSansJP-Light.ttf') as number,
+    'NotoSansJP-Medium': require('../assets/fonts/NotoSansJP-Medium.ttf') as number,
+    'NotoSansJP-Regular': require('../assets/fonts/NotoSansJP-Regular.ttf') as number,
+    'NotoSansJP-SemiBold': require('../assets/fonts/NotoSansJP-SemiBold.ttf') as number,
+    'NotoSansJP-Thin': require('../assets/fonts/NotoSansJP-Thin.ttf') as number
   })
 
   useEffect(() => {

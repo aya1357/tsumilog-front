@@ -1,6 +1,6 @@
 import { LocaleConfig } from 'react-native-calendars'
 
-interface LocaleConfigType {
+type LocaleConfigType = {
   locales: Record<
     string,
     {

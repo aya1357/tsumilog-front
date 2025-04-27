@@ -37,11 +37,15 @@
         "expo-font",
         {
           "fonts": [
-            "./assets/fonts/Rubik-Bold.ttf",
-            "./assets/fonts/Rubik-ExtraBold.ttf",
-            "./assets/fonts/Rubik-Medium.ttf",
-            "./assets/fonts/Rubik-Regular.ttf",
-            "./assets/fonts/Rubik-SemiBold.ttf"
+            "./assets/fonts/NotoSansJP-Black.ttf",
+            "./assets/fonts/NotoSansJP-Bold.ttf",
+            "./assets/fonts/NotoSansJP-ExtraBold.ttf",
+            "./assets/fonts/NotoSansJP-ExtraLight.ttf",
+            "./assets/fonts/NotoSansJP-Light.ttf",
+            "./assets/fonts/NotoSansJP-Medium.ttf",
+            "./assets/fonts/NotoSansJP-Regular.ttf",
+            "./assets/fonts/NotoSansJP-SemiBold.ttf",
+            "./assets/fonts/NotoSansJP-Thin.ttf"
           ]
         }
       ]

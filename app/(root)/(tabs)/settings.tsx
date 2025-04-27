@@ -1,106 +1,88 @@
-import { Alert, Image, SafeAreaView, ScrollView, Text, TouchableOpacity, View } from 'react-native'
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import React from 'react'
+import { ScrollView, Switch, Text, View } from 'react-native'
+import {
+  Bell,
+  CircleHelp as HelpCircle,
+  Mail,
+  Moon,
+  Share2,
+  Star,
+  Trash
+} from 'lucide-react-native'
 
-import { logout } from '@/lib/appwrite'
-import { useGlobalContext } from '@/lib/global-provider'
+import { colors } from '@/components/theme/colors'
+import { Card } from '@/components/ui/Card'
 
-interface SettingsItemProp {
-  icon: React.ReactNode
-  title: string
-  onPress?: () => void
-  textStyle?: string
-  showArrow?: boolean
-}
-
-const settings = [
-  {
-    title: 'My Bookings',
-    icon: 'event'
-  },
-  {
-    title: 'Payments',
-    icon: 'account-balance-wallet'
-  },
-  {
-    title: 'Profile',
-    icon: 'person'
-  },
-  {
-    title: 'Notifications',
-    icon: 'notifications'
-  },
-  {
-    title: 'Security',
-    icon: 'security'
-  },
-  {
-    title: 'Language',
-    icon: 'language'
-  },
-  {
-    title: 'Help Center',
-    icon: 'help'
-  },
-  {
-    title: 'Invite Friends',
-    icon: 'group'
-  }
-]
-
-const SettingsItem = ({ icon, title, onPress, textStyle, showArrow = true }: SettingsItemProp) => (
-  <TouchableOpacity onPress={onPress} className="flex flex-row items-center justify-between py-3">
-    <View className="flex flex-row items-center gap-3">
-      <MaterialIcons name={icon} size={24} color="#1a1a1a" />
-      <Text className={`text-black-300 font-rubik-medium text-lg ${textStyle}`}>{title}</Text>
-    </View>
-
-    {showArrow && <MaterialIcons name="chevron-right" size={24} color="#1a1a1a" />}
-  </TouchableOpacity>
-)
-
-export default function Settings() {
-  const { user, refetch } = useGlobalContext()
-
-  const handleLogout = async () => {
-    const result = await logout()
-    if (result) {
-      Alert.alert('Success', 'Logged out successfully')
-      void refetch({})
-    } else {
-      Alert.alert('Error', 'Failed to logout')
-    }
-  }
+export default function SettingsScreen() {
+  const [notifications, setNotifications] = React.useState(true)
+  const [darkMode, setDarkMode] = React.useState(false)
 
   return (
-    <SafeAreaView className="h-full">
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerClassName="pb-32 px-7">
-        <View className="mt-5 flex flex-row justify-center">
-          <View className="relative mt-5 flex flex-col items-center">
-            <Image source={{ uri: user?.avatar }} className="relative size-20 rounded-full" />
-            <TouchableOpacity className="absolute bottom-11 right-2">
-              <MaterialIcons name="camera-alt" size={24} color="#1a1a1a" />
-            </TouchableOpacity>
+    <ScrollView className="flex-1" contentContainerClassName="p-4">
+      <Text className="mb-2 mt-6 text-lg font-bold">アプリ設定</Text>
 
-            <Text className="mt-2 font-rubik-bold text-2xl">{user?.name}</Text>
+      <Card style={{ marginBottom: 16 }}>
+        <View className="flex-row items-center justify-between border-b border-neutral-100 py-2">
+          <View className="flex-row items-center gap-2">
+            <Bell size={20} color={colors.primary.dark} />
+            <Text className="text-base">通知</Text>
           </View>
-        </View>
-
-        <View className="mt-5 flex flex-col border-t border-primary-200 pt-5">
-          {settings.slice(2).map((item, index) => (
-            <SettingsItem key={index} {...item} />
-          ))}
-        </View>
-
-        <View className="mt-5 flex flex-col border-t border-primary-200 pt-5">
-          <SettingsItem
-            icon="logout"
-            title="Logout"
-            textStyle="text-danger"
-            showArrow={false}
-            onPress={handleLogout}
+          <Switch
+            value={notifications}
+            onValueChange={setNotifications}
+            trackColor={{ false: colors.neutral.light, true: colors.primary.light }}
+            thumbColor={notifications ? colors.primary.default : colors.neutral.medium}
           />
         </View>
-      </ScrollView>
-    </SafeAreaView>
+
+        <View className="flex-row items-center justify-between border-b border-neutral-100 py-2">
+          <View className="flex-row items-center gap-2">
+            <Moon size={20} color={colors.primary.dark} />
+            <Text className="text-base">ダークモード</Text>
+          </View>
+          <Switch
+            value={darkMode}
+            onValueChange={setDarkMode}
+            trackColor={{ false: colors.neutral.light, true: colors.primary.light }}
+            thumbColor={darkMode ? colors.primary.default : colors.neutral.medium}
+          />
+        </View>
+      </Card>
+
+      <Text className="mb-2 text-lg font-bold">その他</Text>
+
+      <Card style={{ marginBottom: 16 }}>
+        <View className="flex-row items-center gap-2 border-b border-neutral-100 py-2">
+          <Share2 size={20} color={colors.primary.dark} />
+          <Text className="text-base">友達に紹介</Text>
+        </View>
+
+        <View className="flex-row items-center gap-2 border-b border-neutral-100 py-2">
+          <Star size={20} color={colors.primary.dark} />
+          <Text className="text-base">アプリを評価</Text>
+        </View>
+
+        <View className="flex-row items-center gap-2 border-b border-neutral-100 py-2">
+          <Mail size={20} color={colors.primary.dark} />
+          <Text className="text-base">お問い合わせ</Text>
+        </View>
+
+        <View className="flex-row items-center gap-2 py-2">
+          <HelpCircle size={20} color={colors.primary.dark} />
+          <Text className="text-base">ヘルプ</Text>
+        </View>
+      </Card>
+
+      <Card style={{ marginTop: 32 }}>
+        <View className="flex-row items-center gap-2 py-2">
+          <Trash size={20} color={colors.error.dark} />
+          <Text className="text-error-700 text-base">データを削除</Text>
+        </View>
+      </Card>
+
+      <View className="mt-8 items-center">
+        <Text className="text-sm text-neutral-600">バージョン 1.0.0</Text>
+      </View>
+    </ScrollView>
   )
 }
